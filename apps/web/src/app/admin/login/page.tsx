@@ -1,19 +1,8 @@
+'use client';
+
 // ============================================
 // Admin Login Page
 // ============================================
-
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Admin Login',
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
-
-'use client';
-
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';

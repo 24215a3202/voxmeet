@@ -1,19 +1,8 @@
+'use client';
+
 // ============================================
 // Admin Dashboard
 // ============================================
-
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Admin Dashboard',
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
-
-'use client';
-
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
