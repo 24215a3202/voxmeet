@@ -1,0 +1,71 @@
+// ============================================
+// Prisma Schema — VoxMeet
+// ============================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --- Report Model ---
+model Report {
+  id         String       @id @default(cuid())
+  sessionId  String
+  reporterId String
+  reportedId String
+  reason     ReportReason
+  ipHash     String       // SHA-256 hash of reporter IP (never raw IP)
+  createdAt  DateTime     @default(now())
+
+  @@index([reportedId])
+  @@index([reporterId])
+  @@index([createdAt])
+  @@index([reportedId, createdAt])
+}
+
+// --- Ban Model ---
+model Ban {
+  id              String    @id @default(cuid())
+  userId          String    @unique
+  ipHash          String?   // ban by IP hash to prevent re-registration
+  fingerprintHash String?   // browser fingerprint hash
+  type            BanType
+  expiresAt       DateTime?
+  createdAt       DateTime  @default(now())
+
+  @@index([ipHash])
+  @@index([fingerprintHash])
+  @@index([type])
+}
+
+// --- Audit Log Model ---
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String   // e.g. BAN_ISSUED, REPORT_DISMISSED, ADMIN_LOGIN
+  actorId   String   // admin identifier
+  targetId  String?
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  @@index([action])
+  @@index([createdAt])
+  @@index([targetId])
+}
+
+// --- Enums ---
+enum ReportReason {
+  HARASSMENT
+  HATE_SPEECH
+  EXPLICIT_CONTENT
+  SPAM
+  OTHER
+}
+
+enum BanType {
+  SOFT
+  HARD
+}

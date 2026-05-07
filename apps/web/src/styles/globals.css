@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-vox-bg text-vox-text font-sans;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-vox-primary/30 text-white;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-vox-bg;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-vox-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-vox-text-dim;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-vox-card/60 backdrop-blur-xl border border-vox-border/50 rounded-2xl;
+  }
+
+  .glass-strong {
+    @apply bg-vox-card/80 backdrop-blur-2xl border border-vox-border rounded-2xl;
+  }
+
+  .btn-primary {
+    @apply px-8 py-4 bg-vox-primary hover:bg-vox-primary-hover text-white font-semibold rounded-xl
+           transition-all duration-300 ease-out
+           shadow-lg shadow-vox-primary/25 hover:shadow-xl hover:shadow-vox-primary/40
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-vox-surface hover:bg-vox-card text-vox-text font-medium rounded-xl
+           border border-vox-border hover:border-vox-primary/50
+           transition-all duration-300 ease-out
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply px-6 py-3 bg-vox-danger/10 hover:bg-vox-danger/20 text-vox-danger font-medium rounded-xl
+           border border-vox-danger/30 hover:border-vox-danger/50
+           transition-all duration-300 ease-out
+           active:scale-95;
+  }
+
+  .btn-icon {
+    @apply p-3 rounded-xl bg-vox-surface hover:bg-vox-card border border-vox-border
+           transition-all duration-200 ease-out active:scale-90;
+  }
+
+  .pill {
+    @apply px-4 py-2 rounded-full text-sm font-medium
+           transition-all duration-200 ease-out cursor-pointer select-none;
+  }
+
+  .pill-default {
+    @apply pill bg-vox-surface text-vox-text-muted border border-vox-border
+           hover:border-vox-primary/50 hover:text-vox-text;
+  }
+
+  .pill-active {
+    @apply pill bg-vox-primary/20 text-vox-primary border border-vox-primary/50
+           shadow-sm shadow-vox-primary/10;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-vox-surface border border-vox-border rounded-xl
+           text-vox-text placeholder:text-vox-text-dim
+           focus:outline-none focus:border-vox-primary/50 focus:ring-2 focus:ring-vox-primary/20
+           transition-all duration-200;
+  }
+
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-vox-primary via-vox-secondary to-vox-accent
+           bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(108, 92, 231, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108, 92, 231, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .bg-noise {
+    position: relative;
+  }
+
+  .bg-noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+}
