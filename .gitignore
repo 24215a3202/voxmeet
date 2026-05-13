@@ -38,3 +38,5 @@ packages/db/prisma/*.db
 
 # Coverage
 coverage/
+
+.vercel
