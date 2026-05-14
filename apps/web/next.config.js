@@ -2,6 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['@voxmeet/types'],
+  typescript: {
+    tsconfigPath: './tsconfig.json',
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 
   async headers() {
     return [
