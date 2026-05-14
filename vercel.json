@@ -2,7 +2,4 @@
   "buildCommand": "npm run build:vercel",
   "outputDirectory": "apps/web/.next",
   "installCommand": "npm install",
-  "engines": {
-    "node": "20.x"
-  }
 }
