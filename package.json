@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
+    "build:vercel": "npm run db:generate && npx turbo run build --filter=@voxmeet/web",
     "lint": "turbo run lint",
     "db:generate": "turbo run db:generate",
     "db:push": "turbo run db:push",
